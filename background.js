@@ -1,5 +1,6 @@
 chrome.action.onClicked.addListener((tab) => {
-  if (tab.url.startsWith("https://www.chess.com/game")) {
+  const url = tab.url;
+  if (url.startsWith("https://www.chess.com/game")) {
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
       func: () => {
@@ -72,6 +73,38 @@ chrome.action.onClicked.addListener((tab) => {
         } else {
           console.error("Sidebar div not found");
         }
+      },
+    });
+  } else if (url.startsWith("https://www.chess.com")) {
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      func: () => {
+        // Create a new banner element
+        var banner = document.createElement("div");
+        banner.classList.add("banner");
+        banner.textContent = "Start a game to see the magic";
+
+        // Apply styles to the banner
+        banner.style.position = "fixed";
+        banner.style.top = "20px";
+        banner.style.right = "20px";
+        banner.style.backgroundColor = "#ffffff";
+        banner.style.color = "#000000";
+        banner.style.padding = "20px";
+        banner.style.fontFamily = "Lexend Deca, Arial, sans-serif";
+        banner.style.fontSize = "18px";
+        banner.style.fontWeight = "bold";
+        banner.style.textAlign = "center";
+        banner.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.2)";
+        banner.style.zIndex = "9999";
+
+        // Append the banner to the document body
+        document.body.appendChild(banner);
+
+        // Remove the banner after 2 seconds
+        setTimeout(function () {
+          banner.remove();
+        }, 2000);
       },
     });
   }
