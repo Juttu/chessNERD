@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Chess.com Nerd",
+  "name": "Binge Chess.com",
   "version": "1.0",
-  "description": "Now concentrate more.",
+  "description": "Now you can Binge play chess on Chess.com.",
   "permissions": ["scripting", "activeTab"],
   "background": {
     "service_worker": "background.js"
