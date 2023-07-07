@@ -73,6 +73,17 @@ chrome.action.onClicked.addListener((tab) => {
         } else {
           console.error("Sidebar div not found");
         }
+        var adElement = document.getElementsByClassName("board-layout-ad")[0];
+
+        if (adElement) {
+          if (adElement.style.display === "none") {
+            adElement.style.display = "";
+          } else {
+            adElement.style.display = "none";
+          }
+        } else {
+          console.error("Ad element not found");
+        }
       },
     });
   } else if (url.startsWith("https://www.chess.com")) {
